@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace 希尔排序
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] a=new int[] { 5,3,2,4,7,1,9,8,0,6};  //长度为10
+            int g, i, j;
+            for(g=a.Length/2;g>0;g/=2)     /* 设置排序的步长，步长g每次减半，直到减到1 */
+            {
+                for(i= g;i<a.Length;i++)    //定位到每一个元素 
+                {
+                    for(j=i - g;(j>=0)&&(a[j]>a[j+g]);j-=g)//比较相距gap远的两个元素的大小，根据排序方向决定如何调换
+                    {
+                        int t;
+                        t = a[j];
+                        a[j] = a[j + g];
+                        a[j + g] = t;
+                    }
+                }
+            }
+            for (int k = 0; k < a.Length; k++)
+                Console.Write("{0} ", a[k]);
+            Console.Read();
+        }
+    }
+}
